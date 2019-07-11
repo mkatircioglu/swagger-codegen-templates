@@ -1,0 +1,44 @@
+/**
+ * {{#description}}{{.}}{{/description}}{{^description}}{{classname}}{{/description}}
+ */
+{{^isInterface}}
+@Builder
+@QueryEntity
+@Data @EqualsAndHashCode(callSuper=false){{#hasVars}}
+@NoArgsConstructor{{/hasVars}}
+@AllArgsConstructor
+{{/isInterface}}
+public {{#isInterface}}interface{{/isInterface}}{{^isInterface}}class{{/isInterface}} {{classname}}{{#extendsClass}} extends {{extendsClass}}{{/extendsClass}}{{#genericClass}}<{{genericClass}}>{{/genericClass}}{{#parent}} extends {{{parent}}}{{/parent}}{{#serializableModel}} implements Serializable{{/serializableModel}} {
+{{#serializableModel}}
+  private static final long serialVersionUID = 1L;
+
+{{/serializableModel}}
+  {{#vars}}
+    {{#isEnum}}
+    {{^isContainer}}
+{{>enumClass}}
+    {{/isContainer}}
+    {{/isEnum}}
+    {{#items.isEnum}}
+      {{#items}}
+      {{^isContainer}}
+{{>enumClass}}
+      {{/isContainer}}
+      {{/items}}
+    {{/items.isEnum}}
+  {{#jackson}}
+  {{/jackson}}
+  {{#gson}}
+  @SerializedName("{{baseName}}")
+  {{/gson}}
+  {{^isGetterSetter}}
+  {{#vendorExtensions.validationClass}}{{{vendorExtensions.validationClass}}}{{/vendorExtensions.validationClass}}
+  /** {{#description}} {{{description}}} {{/description}} **/{{#useBeanValidation}}{{>beanValidation}}{{/useBeanValidation}}
+  private {{{datatypeWithEnum}}} {{name}};
+  {{/isGetterSetter}}
+  {{#isGetterSetter}}
+  void set{{datatypeWithEnum}}({{datatypeWithEnum}} {{name}});
+  {{datatypeWithEnum}} get{{datatypeWithEnum}}();
+  {{/isGetterSetter}}
+  {{/vars}}
+}

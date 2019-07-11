@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Mete Alpaslan KATIRCIOGLU</name>
+			<email>mete@katircioglu.net</email>
+			<organization>Mete Alpaslan KATIRCIOGLU</organization>
+			<organizationUrl>https://github.com/mkatircioglu/maven-archetype-swagger</organizationUrl>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:git://github.com/mkatircioglu/swagger-codegen-templates.git</connection>
+		<developerConnection>scm:git:ssh://github.com:mkatircioglu/swagger-codegen-templates.git</developerConnection>
+		<url>http://github.com/smkatircioglu/swagger-codegen-templates/tree/master</url>
+	</scm>
+
+	<name>${project.artifactId}</name>
+	<description>This project provides tooling for Maven projects to generate code from swagger-definitions (yaml or json)</description>
+	<url>http://mkatircioglu.github.io</url>
+	<groupId>io.github.mkatircioglu</groupId>
+	<artifactId>swagger-codegen-templates</artifactId>
+	<version>1.0.0-RC1</version>
+	<packaging>jar</packaging>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<plugin.maven.source.version>3.1.0</plugin.maven.source.version>
+		<plugin.maven.javadoc.version>3.1.0</plugin.maven.javadoc.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-codegen</artifactId>
+			<version>2.3.1</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>${plugin.maven.source.version}</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>${plugin.maven.javadoc.version}</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<distributionManagement>
+		<repository>
+			<id>bintray-mkatircioglu-release</id>
+			<name>mkatircioglu-release</name>
+			<url>https://api.bintray.com/maven/mkatircioglu/release/swagger-codegen-templates/;publish=1;override=1</url>
+		</repository>
+	</distributionManagement>
+</project>
