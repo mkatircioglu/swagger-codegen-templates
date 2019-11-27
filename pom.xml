@@ -30,7 +30,7 @@
 	<url>http://mkatircioglu.github.io</url>
 	<groupId>io.github.mkatircioglu</groupId>
 	<artifactId>swagger-codegen-templates</artifactId>
-	<version>1.0.0-RC1</version>
+	<version>1.0.0-RC2</version>
 	<packaging>jar</packaging>
 
 	<properties>
